@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="30810Lukasss93.VATDiscountCalculator" Publisher="CN=02624874-0662-4BF6-AE78-82158642BEF7" Version="1.1.0.0" />
+  <Identity Name="30810Lukasss93.VATDiscountCalculator" Publisher="CN=02624874-0662-4BF6-AE78-82158642BEF7" Version="1.2.0.0" />
   <mp:PhoneIdentity PhoneProductId="5937a0b0-fd76-40a1-b861-83e8bfa8b745" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>ms-resource:AppName</DisplayName>
@@ -25,6 +25,7 @@
         <m3:InitialRotationPreference>
           <m3:Rotation Preference="portrait" />
         </m3:InitialRotationPreference>
+        <m3:SplashScreen BackgroundColor="#9500E3" Image="Assets\SplashScreen.png" />
       </m3:VisualElements>
     </Application>
   </Applications>

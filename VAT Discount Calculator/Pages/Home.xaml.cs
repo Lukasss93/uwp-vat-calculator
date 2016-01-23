@@ -34,7 +34,6 @@ namespace VAT_Discount_Calculator.Pages
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
             Utility.SetMargin(TITLE, Utility.MarginEdge.Top, StatusBar.GetForCurrentView().OccludedRect.Height);
-            StatusBar.GetForCurrentView().BackgroundOpacity = 0.2;
             
             flip.SelectionChanged += Flip_SelectionChanged;
             tab_vat.Tapped += (s, e) => { flip.SetValue(FlipView.SelectedIndexProperty, 0); };
