@@ -1,0 +1,3 @@
+MainPackage=C:\Users\LucaFisso\Desktop\VAT Discount Calculator\VAT Discount Calculator\bin\Release\VAT Discount Calculator_1.0.0.0_AnyCPU.appx
+SymbolPackage=C:\Users\LucaFisso\Desktop\VAT Discount Calculator\VAT Discount Calculator\AppPackages\VAT Discount Calculator_1.0.0.0_Test\VAT Discount Calculator_1.0.0.0_AnyCPU.appxsym
+ResourcePack=C:\Users\LucaFisso\Desktop\VAT Discount Calculator\VAT Discount Calculator\bin\Release\VAT Discount Calculator_1.0.0.0_language-it.appx

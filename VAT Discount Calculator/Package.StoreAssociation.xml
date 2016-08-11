@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=02624874-0662-4BF6-AE78-82158642BEF7</Publisher>
-  <PublisherDisplayName>Lukasss93</PublisherDisplayName>
+  <PublisherDisplayName>AuraX Studios</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
@@ -366,14 +366,13 @@
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
     <MainPackageIdentityName>30810Lukasss93.BRTUnofficial</MainPackageIdentityName>
-    <MainPackageIdentityName>30810Lukasss93.ExtremeTaboo</MainPackageIdentityName>
+    <MainPackageIdentityName>30810Lukasss93.FabulousTaboo</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.FileLocker-Lukasss93</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.FilesLocker</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.QDSSUnofficial</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.ScrabbleScoreKeeper</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.MojangServiceStatuses</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.SuonerieperWP8.1</MainPackageIdentityName>
-    <MainPackageIdentityName>30810Lukasss93.FabulousTaboo</MainPackageIdentityName>
     <MainPackageIdentityName>30810Lukasss93.TestAppStore</MainPackageIdentityName>
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH5GSCP" />

@@ -1,5 +1,4 @@
 ﻿using AuraRT.Display;
-using AuraRT.Localization;
 using AuraRT.Storage;
 using AuraRT.Utilities;
 using Lukasss93.Controls;
@@ -21,6 +20,12 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using AuraRT.Globalization;
+using Windows.UI.Core;
+using AuraRT.Imaging;
+using System.Reflection;
+using AuraRT.Serializer;
+using VAT_Discount_Calculator.Classes;
 
 namespace VAT_Discount_Calculator.Pages
 {
@@ -33,13 +38,16 @@ namespace VAT_Discount_Calculator.Pages
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            Utility.SetMargin(TITLE, Utility.MarginEdge.Top, StatusBar.GetForCurrentView().OccludedRect.Height);
-            
+            CommandBarSetup(cb10);
+            SetStatuBarBackground();
+            Window.Current.VisibilityChanged += Current_VisibilityChanged;
+
             flip.SelectionChanged += Flip_SelectionChanged;
             tab_vat.Tapped += (s, e) => { flip.SetValue(FlipView.SelectedIndexProperty, 0); };
             tab_discount.Tapped += (s, e) => { flip.SetValue(FlipView.SelectedIndexProperty, 1); };
 
             cb_tile.Click += Cb_tile_Click;
+            cb_info.Click += (s, e) => { Frame.Navigate(typeof(Lukasss93.Pages.Information), Json.Serialize(MyConstants.GenerateParameter())); };
 
             //vat
             vat = Convert.ToDouble((int)AppSettings.Get("vat_percentage"));
@@ -56,19 +64,29 @@ namespace VAT_Discount_Calculator.Pages
             discount_enter_number.KeyUp += (s, e) => { CalculateDiscount(); };
 
             //localizzazione
-            titletext.Text = Translate.Get("AppName").ToUpper();
+            tab_vat.TabTitle = LocalizedString.Get("vat");
+            vat_percentage_title.Text = LocalizedString.Get("percentage_vat");
+            vat_enter_number.Header = LocalizedString.Get("enter_number");
+            vat_result_tile.Text = LocalizedString.Get("result");
 
-            tab_vat.TabHeader = Translate.Get("vat");
-            vat_percentage_title.Text = Translate.Get("percentage_vat");
-            vat_enter_number.Header = Translate.Get("enter_number");
-            vat_result_tile.Text = Translate.Get("result");
+            tab_discount.TabTitle = LocalizedString.Get("discount");
+            discount_percentage_title.Text = LocalizedString.Get("percentage_discount");
+            discount_enter_number.Header = LocalizedString.Get("enter_number");
+            discount_result_title.Text = LocalizedString.Get("result");
 
-            tab_discount.TabHeader = Translate.Get("discount");
-            discount_percentage_title.Text = Translate.Get("percentage_discount");
-            discount_enter_number.Header = Translate.Get("enter_number");
-            discount_result_title.Text = Translate.Get("result");
+            cb_info.Label = LocalizedString.Get("information");
 
             GoogleAnalytics.EasyTracker.GetTracker().SendView("Home.xaml.cs");
+        }
+
+        private void Current_VisibilityChanged(object sender, VisibilityChangedEventArgs e)
+        {
+            SetStatuBarBackground();
+        }
+
+        private void SetStatuBarBackground()
+        {
+            StatusBarHelper.SetBackground(ColorUtilities.PhoneChromeBrush.Color);
         }
 
         private void Cb_tile_Click(object sender, RoutedEventArgs e)
@@ -90,12 +108,12 @@ namespace VAT_Discount_Calculator.Pages
         private void CheckTile()
         {
             string folderName = "colored";
-            cb_tile.Label = String.Format(Translate.Get("transparent_tile"), Translate.Get("off"));
+            cb_tile.Label = String.Format(LocalizedString.Get("transparent_tile"), LocalizedString.Get("off"));
 
             if((bool)AppSettings.Get("transparent_tile"))
             {
                 folderName = "transparent";
-                cb_tile.Label = String.Format(Translate.Get("transparent_tile"), Translate.Get("on"));
+                cb_tile.Label = String.Format(LocalizedString.Get("transparent_tile"), LocalizedString.Get("on"));
             }
 
             var small = TileContentFactory.CreateTileSquare71x71Image();
@@ -180,6 +198,34 @@ namespace VAT_Discount_Calculator.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             CheckTile();
+        }
+
+        private void CommandBarSetup(CommandBarBar commandBar)
+        {
+            var children = commandBar.PrimaryCommands.Union(commandBar.SecondaryCommands);
+            var runtimeFields = this.GetType().GetRuntimeFields();
+
+            foreach(DependencyObject i in children)
+            {
+                var info = i.GetType().GetRuntimeProperty("Name");
+
+                if(info != null)
+                {
+                    string name = (string)info.GetValue(i);
+
+                    if(name != null)
+                    {
+                        foreach(FieldInfo j in runtimeFields)
+                        {
+                            if(j.Name == name)
+                            {
+                                j.SetValue(this, i);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

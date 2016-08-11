@@ -21,7 +21,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
+using AuraRT.Display;
 
 namespace VAT_Discount_Calculator
 {
@@ -38,27 +38,24 @@ namespace VAT_Discount_Calculator
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
             ContinuationManager = new ContinuationManager();
             InitializeSettings();
+
+            AppFileSettings.Initialize("log", "");
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
-            e.Handled = true;
-
             Frame rootFrame = Window.Current.Content as Frame;
             if(rootFrame != null && rootFrame.CanGoBack)
             {
+                e.Handled = true;
                 rootFrame.GoBack();
-            }
-            else
-            {
-                App.Current.Exit();
             }
         }
 
         private void App_Resuming(object sender, object e)
         {
-            OnVisibleBoundsNavigated();
-            OnVisibleBoundsChanged(null, null);
+            //OnVisibleBoundsNavigated();
+            //OnVisibleBoundsChanged(null, null);
         }
 
         private void InitializeSettings()
@@ -101,8 +98,8 @@ namespace VAT_Discount_Calculator
                 RootFrame.Navigate(typeof(Home), e.Arguments);
             }
 
-            OnVisibleBoundsNavigated();
-            OnVisibleBoundsChanged(null, null);
+            //OnVisibleBoundsNavigated();
+            //OnVisibleBoundsChanged(null, null);
 
             // Ensure the current window is active
             Window.Current.Activate();
@@ -110,7 +107,7 @@ namespace VAT_Discount_Calculator
 
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            OnVisibleBoundsNavigated();
+            //OnVisibleBoundsNavigated();
         }
 
         private void CreateRootFrame()
@@ -189,8 +186,8 @@ namespace VAT_Discount_Calculator
                 ContinuationManager.Continue(continuationEventArgs);
             }
 
-            OnVisibleBoundsNavigated();
-            OnVisibleBoundsChanged(null, null);
+            //OnVisibleBoundsNavigated();
+            //OnVisibleBoundsChanged(null, null);
 
             Window.Current.Activate();
         }
